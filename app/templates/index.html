@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block container %}
+
+    <p class="lead">
+        <p>Please insert a valid video YouTube-URL</p>
+        <form action="" method="post" role="form">
+            {{ form.csrf }}
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id="url" name="url" placeholder="YouTube-URL" aria-label="YouTube-URL" aria-describedby="YouTube-URL">
+                <div class="input-group-append">
+                    <button id="button" class="btn btn-success" type="submit">Convert</button>
+                </div>
+            </div>
+        </form>
+        <div class="text-center">
+            <div><p id="spinnertext" class="lead text-center" style="display: none">Loading...</p></div>
+            <div id="spinner" class="spinner-grow" style="width: 3rem; height: 3rem; display: none;" role="status"></div>
+        </div>
+    </p>
+    <hr class="my-4">
+    {% with errors = get_flashed_messages(category_filter=["error"]) %}
+        {% if errors %}
+            {% for error in errors %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const spinner = document.getElementById('spinner')
+        const spinnertext = document.getElementById('spinnertext')
+        const input = document.getElementById('url')
+        const button = document.getElementById('button')
+
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            form.submit();
+            input.disabled = true;
+            button.disabled = true;
+            spinnertext.style.display = 'inline-block';
+            spinner.style.display = 'inline-block';
+        });
+
+    })
+</script>
+{% endblock %}
