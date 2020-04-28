@@ -12,11 +12,11 @@
                 </div>
                 <div class="form-group">
                     <label for="artist" class="form-label">Artits</label>
-                    <input type="text" class="form-control" id="artist" name="artist" placeholder="Artist" aria-label="Artist" aria-describedby="Artist" value="{{ song.artist }}">
+                    <input type="text" class="form-control" id="artist" name="artist" placeholder="Artist" aria-label="Artist" aria-describedby="Artist" value="{{ song.artist if song.artist != None }}">
                 </div>
                 <div class="form-group">
                     <label for="album" class="form-label">Album</label>
-                    <input type="text" class="form-control" id="album" name="album" placeholder="Album" aria-label="Album" aria-describedby="Album" value="{{ song.album }}">
+                    <input type="text" class="form-control" id="album" name="album" placeholder="Album" aria-label="Album" aria-describedby="Album" value="{{ song.album if song.album != None }}">
                 </div>
                 <hr class="my-4">
                 <div class="text-right">

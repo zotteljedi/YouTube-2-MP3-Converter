@@ -1,4 +1,3 @@
-import uuid
 import youtube_dl
 
 from app.models import Song
@@ -21,12 +20,12 @@ class YoutubeDL:
     def __createSongModel(self, url, metadata):
         song = Song()
         song.url = url
-        id = metadata.get('id', uuid.uuid4())
+        id = metadata.get('id')
         song.media_id = f'{id}.mp3'
-        song.title = metadata.get('title', 'url')
-        song.alt_title = metadata.get('alt_title', '')
-        song.artist = metadata.get('artist', '')
-        song.album = metadata.get('album', '')
+        song.title = metadata.get('title')
+        song.alt_title = metadata.get('alt_title')
+        song.artist = metadata.get('artist')
+        song.album = metadata.get('album')
         return song
 
     def convert_url_to_mp3(self, url):
